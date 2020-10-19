@@ -1,0 +1,16 @@
+.buttonCheck{
+    border: 2px solid green;
+    color: orange;
+    border-radius: 20%;
+}
+
+.buttonClose{
+    border: 2px solid green;
+    color: orange;
+    border-radius: 20%;
+}
+
+.finishedText {
+    font-size: x-large;
+    color: green;
+}
