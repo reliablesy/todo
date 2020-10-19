@@ -1,10 +1,24 @@
+* {
+
+}
+
+.selector-for-some-widget {
+    box-sizing: content-box;
+}
+
+.input-style {
+ margin: 5px 0 5px 20px;
+}
+
 .buttonCheck{
+    margin: 0 5px 0 5px;
     border: 2px solid green;
     color: orange;
     border-radius: 20%;
 }
 
 .buttonClose{
+    margin: 0 5px 0 5px;
     border: 2px solid green;
     color: orange;
     border-radius: 20%;
@@ -14,3 +28,4 @@
     font-size: x-large;
     color: green;
 }
+

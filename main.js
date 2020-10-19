@@ -7,35 +7,77 @@ function add() {
     const buttonClose = document.createElement(`button`);
     const finished = document.createElement(`span`);
     const div = document.createElement(`div`);
+    const missclick = document.createElement(`button`);
 
-    buttonCheck.className = `buttonCheck`;
-    buttonClose.className = `buttonClose`;
+    missclick.className = `btn btn-outline-primary`;
+
+    buttonCheck.className = `btn btn-success`;
+    buttonCheck.style.margin = `0 5px 0 5px`;
+
+    buttonClose.className = `btn btn-danger`;
+    buttonClose.style.margin = `0 5px 0 5px`;
+
     finished.className = `finishedText`;
+
+    div.className = `input-style`;
 
     div.innerHTML = input.value;
 
     buttonCheck.innerHTML = `Прочитано`;
     buttonClose.innerHTML = `Закрыть`;
     finished.innerText = `Выполнено!`;
+    missclick.innerHTML = `Возвратить`;
 
-
+    const finishAll = document.createElement(`button`);
+    finishAll.className = `btn btn-outline-dark`;
+    finishAll.innerHTML = `Удалить выполненное задание`;
 
     root.appendChild(div);
     root.appendChild(buttonCheck);
     root.appendChild(buttonClose);
 
-    buttonClose.addEventListener(`click`, function close() {
+    function close() {
         div.remove();
         buttonClose.remove();
         buttonCheck.remove();
-    });
+        finishAll.remove();
+        finished.style.display=`none`;
+    }
 
-    buttonCheck.addEventListener(`click`, function check() {
-       div.style.textDecoration = `line-through`;
-       div.after(finished);
-       buttonClose.remove();
-       buttonCheck.remove();
+    function check() {
+        div.style.textDecoration = `line-through`;
+        div.before(finished);
+        buttonClose.remove();
+        buttonCheck.remove();
+        div.after(missclick);
+        finished.style.display=`block`;
+
+
+        div.after(finishAll);
+        finishAll.addEventListener(`click`, function deleteFinishTask() {
+            div.remove();
+            buttonClose.remove();
+            buttonCheck.remove();
+            finished.style.display=`none`;
+            finishAll.remove();
+            missclick.remove();
+        });
+
+    }
+
+    buttonClose.addEventListener(`click`, close);
+
+    buttonCheck.addEventListener(`click`, check);
+
+    missclick.addEventListener(`click`, function miss() {
+        root.appendChild(div);
+        root.appendChild(buttonCheck);
+        root.appendChild(buttonClose);
+        missclick.remove();
+        finishAll.remove();
+        finished.style.display=`none`;
+        div.style.textDecoration = `none`;
+
     });
 }
-
 document.querySelector(`#create`).addEventListener(`click`, add);
