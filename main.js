@@ -1,47 +1,41 @@
 // [X] Toggle
-// [ ] Remove
+// [X] Remove
 
 function add() {
     const input = document.getElementById(`input-txt`);
     const root = document.getElementById(`todo-txt`);
-
+    const wrapper = document.createElement(`div`);
+    
     const toggle = document.createElement(`button`);
     const clean = document.createElement(`button`);
 
     const completeText = document.createElement(`span`);
-    const div = document.createElement(`div`);
+    const todoText = document.createElement(`div`);
 
-    div.innerHTML = input.value;
-
+    todoText.innerHTML = input.value;
     toggle.innerHTML = 'Переключить';
     clean.innerHTML = `Удалить`;
     
     completeText.innerText = `Выполнено!`;
 
-    root.appendChild(div);
-    root.appendChild(toggle);
-    root.appendChild(clean);
+    root.appendChild(wrapper);
+    wrapper.appendChild(todoText);
+    wrapper.appendChild(toggle);
+    wrapper.appendChild(clean);
 
-    // Убирает все
-    function close() {
-        div.remove();
-        clean.remove();
-        toggle.remove();
-        completeText.style.display=`none`;
-    }
-
-    clean.addEventListener(`click`, close);
+    clean.addEventListener(`click`, function() {
+        wrapper.remove();
+    });
 
     function mark() {
-        div.style.textDecoration = `line-through`;
+        todoText.style.textDecoration = `line-through`;
         completeText.style.display=`block`;
-        div.before(completeText);
+        todoText.before(completeText);
     }
 
     function unmark() {
-        root.appendChild(div);
         completeText.style.display=`none`;
-        div.style.textDecoration = `none`;
+        todoText.style.textDecoration = `none`;
     }
 
     let isDone = false;
