@@ -29,7 +29,6 @@ function add() {
     function close() {
         div.remove();
         buttonClose.remove();
-        buttonCheck.remove();
         finishAll.remove();
         finished.style.display=`none`;
     }
@@ -65,12 +64,12 @@ function add() {
 
     toggle.addEventListener('click', () => {
         if (isDone == true) {
-            isDone = false;
             unmark();
         } else {
-            isDone = true;
             mark();
         }
+        isDone = !isDone;
     })
 }
+
 document.querySelector(`#create`).addEventListener(`click`, add);
