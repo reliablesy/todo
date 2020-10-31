@@ -1,5 +1,9 @@
 // [X] Toggle
 // [X] Remove
+// [X] Edit text
+// [] Clean text in input
+// [] CheckBox instead button
+// [] Persist between loads (Local storage)
 
 function add() {
     const input = document.getElementById(`input-txt`);
@@ -10,10 +14,10 @@ function add() {
     const clean = document.createElement(`button`);
 
     const completeText = document.createElement(`span`);
-    const todoText = document.createElement(`div`);
+    const todoText = document.createElement(`input`);
 
-    todoText.innerHTML = input.value;
-    toggle.innerHTML = 'Переключить';
+    todoText.value = input.value;
+    toggle.innerHTML = 'Выполнено';
     clean.innerHTML = `Удалить`;
     
     completeText.innerText = `Выполнено!`;
@@ -31,11 +35,13 @@ function add() {
         todoText.style.textDecoration = `line-through`;
         completeText.style.display=`block`;
         todoText.before(completeText);
+        toggle.innerHTML = 'Вернуть';
     }
 
     function unmark() {
         completeText.style.display=`none`;
         todoText.style.textDecoration = `none`;
+        toggle.innerHTML = 'Выполнить';
     }
 
     let isDone = false;
