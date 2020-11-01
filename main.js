@@ -1,7 +1,7 @@
 // [X] Toggle
 // [X] Remove
 // [X] Edit text
-// [] Clean text in input
+// [X] Clean text in input
 // [] CheckBox instead button
 // [] Persist between loads (Local storage)
 
@@ -19,7 +19,7 @@ function add() {
     todoText.value = input.value;
     toggle.innerHTML = 'Выполнено';
     clean.innerHTML = `Удалить`;
-    
+    input.value = '';
     completeText.innerText = `Выполнено!`;
 
     root.appendChild(wrapper);
