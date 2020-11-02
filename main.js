@@ -9,15 +9,15 @@ function add() {
     const input = document.getElementById(`input-txt`);
     const root = document.getElementById(`todo-txt`);
     const wrapper = document.createElement(`div`);
-    
-    const toggle = document.createElement(`button`);
+
+    const toggle = document.createElement(`input`);
     const clean = document.createElement(`button`);
 
     const completeText = document.createElement(`span`);
     const todoText = document.createElement(`input`);
 
     todoText.value = input.value;
-    toggle.innerHTML = 'Выполнено';
+    toggle.type = 'checkbox';
     clean.innerHTML = `Удалить`;
     input.value = '';
     completeText.innerText = `Выполнено!`;
@@ -35,13 +35,11 @@ function add() {
         todoText.style.textDecoration = `line-through`;
         completeText.style.display=`block`;
         todoText.before(completeText);
-        toggle.innerHTML = 'Вернуть';
     }
 
     function unmark() {
         completeText.style.display=`none`;
         todoText.style.textDecoration = `none`;
-        toggle.innerHTML = 'Выполнить';
     }
 
     let isDone = false;
