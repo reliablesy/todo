@@ -42,15 +42,18 @@ function add() {
         todoText.style.textDecoration = `none`;
     }
 
-    let isDone = false;
+    let todo = {
+        title: input.value,
+        checked: false
+    };
 
     toggle.addEventListener('click', () => {
-        if (isDone == true) {
+        if (todo.checked === true) {
             unmark();
         } else {
             mark();
         }
-        isDone = !isDone;
+        todo.checked = !todo.checked;
     })
 }
 
