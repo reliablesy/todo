@@ -2,8 +2,22 @@
 // [X] Remove
 // [X] Edit text
 // [X] Clean text in input
-// [] CheckBox instead button
+// [X] CheckBox instead button
+// [X] Save task in localStorage
+// [X] Delete task in localStorage
+// [] Edit task in localStorage
+// [] Load tasks from localStorage on page load
 // [] Persist between loads (Local storage)
+
+const LIST_SAVE_KEY = 'key';
+const list = {
+    todos: []
+};
+
+function save(list) {
+    const listString = JSON.stringify(list);
+    localStorage.setItem(LIST_SAVE_KEY, listString);
+}
 
 function add() {
     const input = document.getElementById(`input-txt`);
@@ -16,7 +30,12 @@ function add() {
     const completeText = document.createElement(`span`);
     const todoText = document.createElement(`input`);
 
-    todoText.value = input.value;
+    let todo = {
+        title: input.value,
+        checked: false
+    };
+
+    todoText.value = todo.title;
     toggle.type = 'checkbox';
     clean.innerHTML = `Удалить`;
     input.value = '';
@@ -27,25 +46,27 @@ function add() {
     wrapper.appendChild(toggle);
     wrapper.appendChild(clean);
 
-    clean.addEventListener(`click`, function() {
+    clean.addEventListener(`click`, function () {
         wrapper.remove();
+        list.todos = list.todos.filter(value => todo !== value);
+        save(list);
     });
+
 
     function mark() {
         todoText.style.textDecoration = `line-through`;
-        completeText.style.display=`block`;
+        completeText.style.display = `block`;
         todoText.before(completeText);
     }
 
     function unmark() {
-        completeText.style.display=`none`;
+        completeText.style.display = `none`;
         todoText.style.textDecoration = `none`;
     }
 
-    let todo = {
-        title: input.value,
-        checked: false
-    };
+    list.todos.push(todo);
+    save(list);
+
 
     toggle.addEventListener('click', () => {
         if (todo.checked === true) {
@@ -58,3 +79,5 @@ function add() {
 }
 
 document.querySelector(`#create`).addEventListener(`click`, add);
+
+
