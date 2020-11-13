@@ -19,7 +19,15 @@ function save(list) {
     localStorage.setItem(LIST_SAVE_KEY, listString);
 }
 
+function f() {
+    const i = localStorage.getItem(LIST_SAVE_KEY);
+    JSON.parse(i);
+    return(i);
+}
+
+
 function add() {
+
     const input = document.getElementById(`input-txt`);
     const root = document.getElementById(`todo-txt`);
     const wrapper = document.createElement(`div`);
@@ -75,9 +83,10 @@ function add() {
             mark();
         }
         todo.checked = !todo.checked;
-    })
+    });
+
+console.log(f());
+
 }
 
 document.querySelector(`#create`).addEventListener(`click`, add);
-
-
