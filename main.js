@@ -23,8 +23,8 @@ function f() {
     const i = localStorage.getItem(LIST_SAVE_KEY);
     JSON.parse(i);
     return(i);
+    console.log(i);
 }
-
 
 function add() {
 
@@ -37,10 +37,14 @@ function add() {
 
     const completeText = document.createElement(`span`);
     const todoText = document.createElement(`input`);
+    const tagImportant = document.createElement(`button`);
+
+
 
     let todo = {
         title: input.value,
-        checked: false
+        checked: false,
+        buttonImporatntCheck: false
     };
 
     todoText.value = todo.title;
@@ -48,18 +52,30 @@ function add() {
     clean.innerHTML = `Удалить`;
     input.value = '';
     completeText.innerText = `Выполнено!`;
+    tagImportant.innerText = `Приоритет`;
+    tagImportant.className = "importantButton";
 
     root.appendChild(wrapper);
     wrapper.appendChild(todoText);
     wrapper.appendChild(toggle);
     wrapper.appendChild(clean);
+    wrapper.appendChild(tagImportant);
+
+
+    tagImportant.addEventListener(`click`, function () {
+        if (todo.buttonImporatntCheck == false) {
+            tagImportant.innerText = `O`;
+        } else {
+            tagImportant.innerText = `Приоритет`;
+        }
+        todo.buttonImporatntCheck = !todo.buttonImporatntCheck;
+    });
 
     clean.addEventListener(`click`, function () {
         wrapper.remove();
         list.todos = list.todos.filter(value => todo !== value);
         save(list);
     });
-
 
     function mark() {
         todoText.style.textDecoration = `line-through`;
@@ -84,8 +100,6 @@ function add() {
         }
         todo.checked = !todo.checked;
     });
-
-console.log(f());
 
 }
 

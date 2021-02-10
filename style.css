@@ -1,32 +1,37 @@
-* {
-
+.importantButton {
+    color: white;
+    background: blueviolet;
 }
 
-.selector-for-some-widget {
-    box-sizing: content-box;
+.importantFlag {
+    background: orange;
+}
+#added {
+    color: black;
 }
 
-.input-style {
- margin: 5px 0 5px 20px;
+
+#add {
+    color: red;
 }
 
-.buttonCheck{
-    margin: 0 5px 0 5px;
-    border: 2px solid green;
+#create {
     color: orange;
-    border-radius: 20%;
+    background-color: yellow;
 }
 
-.buttonClose{
-    margin: 0 5px 0 5px;
-    border: 2px solid green;
-    color: orange;
-    border-radius: 20%;
+#button {
+    color: #7CFC00;
 }
 
-.finishedText {
-    font-size: x-large;
-    color: green;
+#todo-txt {
+    color: red;
 }
 
+#todo {
+    background-color: #FF4500;
+}
 
+#input-txt {
+    color: red;
+}
